@@ -1,4 +1,4 @@
-const whitelist = ['http://localhost:3000', 'http://localhost:6005', process.env.ORIGIN]
+const whitelist = ['http://localhost:3000', 'http://localhost:6005', process.env.ORIGIN];
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -10,6 +10,7 @@ const corsOptions = {
     }
     //si es el mismo origen es undefined
     if (origin === undefined || whitelist.indexOf(origin) !== -1) {
+      console.log('llega al callback')
       callback(null, true)
     } else {
       callback(new Error('Not allowed by CORS'))
