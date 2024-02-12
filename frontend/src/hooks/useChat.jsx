@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { socket } from "../socket/socket";
-import audioFile from '../assets/audio/audio.mp3';
+import audioFile from './../assets/audio/audio.mp3';
 const useChat = () => {
 
     const [isConnected, setIsConnected] = useState(socket.connected);
@@ -13,9 +13,9 @@ const useChat = () => {
     const playSound = async () => {
         try {
             if (messages.length > 0) {
-                await audio.current?.play();
                 console.log('playSound');
                 console.log(audio.current);   
+                await audio.current?.play();
             }
         } catch (err) {
             console.log(err);
