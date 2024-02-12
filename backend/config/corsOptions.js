@@ -1,4 +1,4 @@
-const whitelist = ['http://localhost:3000', 'http://localhost:6005']
+const whitelist = ['http://localhost:3000', 'http://localhost:6005', process.env.ORIGIN]
 
 const corsOptions = {
   origin: function (origin, callback) {
