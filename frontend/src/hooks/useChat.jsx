@@ -10,10 +10,10 @@ const useChat = () => {
         socket.emit('message', message);
     }
 
-    const playSound = () => {
+    const playSound = async () => {
         try {
             if (messages.length > 0) {
-                audio.current?.play();
+                await audio.current?.play();
                 console.log('playSound');
                 console.log(audio.current);   
             }
