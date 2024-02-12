@@ -3,8 +3,9 @@ const whitelist = ['http://localhost:3000', 'http://localhost:6005', process.env
 const corsOptions = {
   origin: function (origin, callback) {
     if (origin) {
-      console.log('mismo origen');
+      console.log('tiene origen');
       console.log(origin);
+      console.log(process.env.ORIGIN);
       
     }
     //si es el mismo origen es undefined
