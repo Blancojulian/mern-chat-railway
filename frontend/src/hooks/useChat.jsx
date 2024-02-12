@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { socket } from "../socket/socket";
-
+import audioFile from '../assets/audio/audio.mp3';
 const useChat = () => {
 
     const [isConnected, setIsConnected] = useState(socket.connected);
     const [messages, setMessages] = useState([]);
-
+    const audio = useRef(new Audio(audioFile));
     const sendMessage = (message) => {
         socket.emit('message', message);
     }
@@ -33,7 +33,19 @@ const useChat = () => {
             socket.off('disconnect', onDisconnect);
             socket.off('message', onMessageEvent);
         };
-    }, [])
+    }, []);
+
+    useEffect(()=>{
+        try {
+            if (messages.length > 0) {
+                audio.current?.play();
+                console.log('play');
+                console.log(audio.current);   
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }, [messages]);
 
     return {
         isConnected,
