@@ -12,7 +12,8 @@ export default function ChatBox() {
     const {
         isConnected,
         messages,
-        sendMessage
+        sendMessage,
+        playSound
     } = useChat();
 
     const handleSendMessage = (e) => {
@@ -32,7 +33,7 @@ export default function ChatBox() {
         <div className="chat-box">
             <h2>Chat Grupal</h2>
             <p>Usuario conectado: {isConnected ? 'Conectado' : 'Desconectado'}</p>
-            <ChatMessages messages={messages} idUser={userInfo._id} />
+            <ChatMessages messages={messages} idUser={userInfo._id} playSound={playSound} />
             <form onSubmit={handleSendMessage} action="">
                 <div className="row">
                     <div className="col-12 col-sm-4">

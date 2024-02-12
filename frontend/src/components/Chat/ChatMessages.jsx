@@ -9,7 +9,7 @@ const styles = {
     listStyle: 'none'
 }
 
-export function ChatMessages({ messages, idUser }) {
+export function ChatMessages({ messages, idUser, playSound }) {
 
     const lastElem = useRef(null);
     useEffect(() => {
@@ -24,9 +24,17 @@ export function ChatMessages({ messages, idUser }) {
     return (
       <ul className="card" style={styles}>
       {
-        messages.map((message, index) =>
-          <MessageItem key={ index } message={message.message} nombre={message.nombre} esPropio={idUser === message._id} />
-        )
+        messages.map((message, index, array) =>{
+          if ((array.length - 1) === index && idUser !== message._id) {
+            playSound();
+          }
+
+          return (<MessageItem
+            key={ index }
+            message={message.message}
+            nombre={message.nombre}
+            esPropio={idUser === message._id} />);
+        })
       }
       <div ref={lastElem}></div>
       </ul>

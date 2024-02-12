@@ -10,6 +10,18 @@ const useChat = () => {
         socket.emit('message', message);
     }
 
+    const playSound = () => {
+        try {
+            if (messages.length > 0) {
+                audio.current?.play();
+                console.log('playSound');
+                console.log(audio.current);   
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     useEffect(() => {
         function onConnect() {
             setIsConnected(true);
@@ -35,7 +47,7 @@ const useChat = () => {
         };
     }, []);
 
-    useEffect(()=>{
+    /*useEffect(()=>{
         try {
             if (messages.length > 0) {
                 audio.current?.play();
@@ -45,12 +57,13 @@ const useChat = () => {
         } catch (err) {
             console.log(err);
         }
-    }, [messages]);
+    }, [messages]);*/
 
     return {
         isConnected,
         messages,
-        sendMessage
+        sendMessage,
+        playSound
     }
 }
 
